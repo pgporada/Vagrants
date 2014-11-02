@@ -77,9 +77,13 @@ echo ">>> Removing the fileMode from git tracked files"
 sudo su - vagrant -c 'git config --global core.fileMode false'
 
 echo
-echo ">>> Installing dotfiles and bashit"
+echo ">>> Installing dotfiles and bash_it"
 git clone https://github.com/revans/bash-it.git /home/vagrant/.bash_it
 sudo curl https://raw.githubusercontent.com/pgporada/Vagrants/master/jennydev/dotfiles/.bash_profile > /home/vagrant/.bash_profile
+sudo su - vagrant -c "mkdir -p ~/.vim/colors"
+sudo curl https://raw.githubusercontent.com/pgporada/Vagrants/master/jennydev/dotfiles/.vim/colors/inkpot.vim > /home/vagrant/.vim/colors/inkpot.vim
+sudo curl https://raw.githubusercontent.com/pgporada/Vagrants/master/jennydev/dotfiles/.vimrc > /home/vagant/.vimrc
+
 
 echo
 echo ">>> Adding Node path to .bashrc"
