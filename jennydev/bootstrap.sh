@@ -19,22 +19,13 @@ echo ">>> Installing Bower"
 sudo npm install -g bower
 
 echo
-echo ">>> Installing Composer"
+echo ">>> Installing Composer - takes a while"
 sudo npm install -g composer
 
 echo
-echo ">>> Installing RVM"
-curl -L https://get.rvm.io | bash -s stable
-source /home/vagrant/.rvm/scripts/rvm
-echo "source /home/vagrant/.rvm/scripts/rvm" >> /home/vagrant/.bashrc
-echo "gem: --no-ri --no-rdoc" > /home/vagrant/.gemrc
-sudo su - vagrant -c "rvm get stable --auto"
-sudo su - vagrant -c "rvm reload"
-
-echo
-echo ">>> Creating the /usr/local/www/sites/ directory"
-sudo mkdir -p /usr/local/www/sites/jenny
-sudo ln -s /vagrant /usr/local/www/sites/jenny
+echo ">>> Creating the web directory"
+sudo mkdir -p /usr/local/www/sites/jenny/sites
+sudo ln -s /vagrant /usr/local/www/sites/jenny/sites
 
 echo
 echo ">>> Add Vagrant to www-data group"
@@ -100,13 +91,3 @@ sudo su - vagrant -c 'ssh-keyscan -H bitbucket.org >> /home/vagrant/.ssh/known_h
 echo
 echo ">>> Installing SASS CSS Importer"
 sudo su - vagrant -c "gem install --user-install --pre sass-css-importer"
-
-#echo
-#echo ">>> Installing newest Virtual Box Additions"
-#curl -O  http://download.virtualbox.org/virtualbox/4.3.16/VBoxGuestAdditions_4.3.16.iso
-#sudo mkdir -p /media/VBoxGuestAdditions
-#sudo mount -o loop,ro VBoxGuestAdditions_4.3.16.iso /media/VBoxGuestAdditions
-#sudo sh /media/VBoxGuestAdditions/VBoxLinuxAdditions.run
-#rm -f VBoxGuestAdditions_4.3.16.iso
-#sudo umount /media/VBoxGuestAdditions
-#sudo rmdir /media/VBoxGuestAdditions
