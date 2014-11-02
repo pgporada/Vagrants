@@ -33,7 +33,7 @@ sudo su - vagrant -c "rvm reload"
 
 echo
 echo ">>> Creating the /usr/local/www/sites/ directory"
-sudo mkdir /usr/local/www/jenny
+sudo mkdir -p /usr/local/www/sites/jenny
 sudo ln -s /vagrant /usr/local/www/sites/jenny
 
 echo
@@ -78,11 +78,11 @@ sudo su - vagrant -c 'git config --global core.fileMode false'
 
 echo
 echo ">>> Installing dotfiles and bash_it"
-git clone https://github.com/revans/bash-it.git /home/vagrant/.bash_it
-sudo curl https://raw.githubusercontent.com/pgporada/Vagrants/master/jennydev/dotfiles/.bash_profile > /home/vagrant/.bash_profile
+sudo su - vagrant -c "git clone https://github.com/revans/bash-it.git /home/vagrant/.bash_it"
+sudo su - vagrant -c "curl https://raw.githubusercontent.com/pgporada/Vagrants/master/jennydev/dotfiles/.bash_profile > /home/vagrant/.bash_profile"
 sudo su - vagrant -c "mkdir -p ~/.vim/colors"
-sudo curl https://raw.githubusercontent.com/pgporada/Vagrants/master/jennydev/dotfiles/.vim/colors/inkpot.vim > /home/vagrant/.vim/colors/inkpot.vim
-sudo curl https://raw.githubusercontent.com/pgporada/Vagrants/master/jennydev/dotfiles/.vimrc > /home/vagant/.vimrc
+sudo su - vagrant -c "curl https://raw.githubusercontent.com/pgporada/Vagrants/master/jennydev/dotfiles/.vim/colors/inkpot.vim > /home/vagrant/.vim/colors/inkpot.vim"
+sudo su - vagrant -c "curl https://raw.githubusercontent.com/pgporada/Vagrants/master/jennydev/dotfiles/.vimrc > /home/vagant/.vimrc"
 
 
 echo
@@ -90,23 +90,23 @@ echo ">>> Adding Node path to .bashrc"
 echo "export NODE_PATH=$NODE_PATH:/home/vagrant/npm/lib/node_modules" >> /home/vagrant/.bashrc && source /home/vagrant/.bashrc
 echo
 echo ">>> Adding vendor/bin to your path"
-echo 'export PATH=vendor/bin:$PATH' >> /home/vagrant/.bashrc
+sudo su - vagrant -c "echo 'export PATH=vendor/bin:$PATH' >> /home/vagrant/.bashrc"
 echo
 echo ">>> Removing StrictHostKey Config and adding to local Vagrant Known Hosts"
-rm /root/.ssh/config
+rm -f /root/.ssh/config
 sudo su - vagrant -c 'ssh-keyscan -H github.com >> /home/vagrant/.ssh/known_hosts'
 sudo su - vagrant -c 'ssh-keyscan -H bitbucket.org >> /home/vagrant/.ssh/known_hosts'
 
 echo
 echo ">>> Installing SASS CSS Importer"
-sudo su - vagrant -c 'gem install --pre sass-css-importer'
+sudo su - vagrant -c "gem install --user-install --pre sass-css-importer"
 
-echo
-echo ">>> Installing newest Virtual Box Additions"
-curl -O  http://download.virtualbox.org/virtualbox/4.3.16/VBoxGuestAdditions_4.3.16.iso
-sudo mkdir /media/VBoxGuestAdditions
-sudo mount -o loop,ro VBoxGuestAdditions_4.3.16.iso /media/VBoxGuestAdditions
-yes | sudo sh /media/VBoxGuestAdditions/VBoxLinuxAdditions.run
-rm VBoxGuestAdditions_4.3.16.iso
-sudo umount /media/VBoxGuestAdditions
-sudo rmdir /media/VBoxGuestAdditions
+#echo
+#echo ">>> Installing newest Virtual Box Additions"
+#curl -O  http://download.virtualbox.org/virtualbox/4.3.16/VBoxGuestAdditions_4.3.16.iso
+#sudo mkdir -p /media/VBoxGuestAdditions
+#sudo mount -o loop,ro VBoxGuestAdditions_4.3.16.iso /media/VBoxGuestAdditions
+#sudo sh /media/VBoxGuestAdditions/VBoxLinuxAdditions.run
+#rm -f VBoxGuestAdditions_4.3.16.iso
+#sudo umount /media/VBoxGuestAdditions
+#sudo rmdir /media/VBoxGuestAdditions
