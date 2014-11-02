@@ -20,5 +20,7 @@ Your web root on the vagrant vm will be<br>
 which is aliased to
 <br>
 <b>
-/vagrant
+/vagrant/sites
 </b>
+<br>
+which resides whereever you cloned this repo/jennydev/sites
