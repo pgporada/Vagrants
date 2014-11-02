@@ -77,8 +77,8 @@ Vagrant.configure("2") do |config|
   config.vm.box = "ubuntu/trusty64"
   config.vm.box_url = "https://vagrantcloud.com/ubuntu/boxes/trusty64/versions/1/providers/virtualbox.box"
 
-  config.vm.define "JennysVagrant" do |Jenny|
-  end
+  #config.vm.define "JennysVagrant" do |Jenny|
+  #end
 
 
   # Create a hostname, don't forget to put it to the `hosts` file
