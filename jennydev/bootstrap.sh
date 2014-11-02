@@ -24,8 +24,8 @@ sudo npm install -g composer
 
 echo
 echo ">>> Creating the web directory"
-sudo mkdir -p /usr/local/www/sites/jenny/sites
-sudo ln -s /vagrant /usr/local/www/sites/jenny/sites
+sudo mkdir -p /usr/local/www/sites/jenny/
+sudo ln -s /vagrant/sites /usr/local/www/sites/jenny/
 
 echo
 echo ">>> Add Vagrant to www-data group"
